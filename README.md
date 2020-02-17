@@ -15,7 +15,7 @@ A node.js package providing i18n with variable interpolation & conjugation of wo
 
 ## Documentation
 
-You can read the full documentation with examples at https://artus9033.github.io/i18n-plus/
+You can read the full documentation with examples [there](https://artus9033.github.io/i18n-plus/).
 
 ## Simple usage in a brief
 

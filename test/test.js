@@ -147,8 +147,8 @@ describe("src/LocaleHelper", function() {
 	});
 
 	describe("#trans", function() {
-		let localeHelper = new LocaleHelper(Locales.pl, LocaleValues, Locales.en);
-		let dict = { var1: "test dictionary val", var2: 3, var3: "some rubbish" };
+		let localeHelper = new LocaleHelper(Locales.en, LocaleValues);
+		let dict = { var1: "test dictionary val", var2: 3, var3: "some rubbish", var4: 5 };
 
 		it("should not alter a non-formatted, raw text", function() {
 			assert.equal(
@@ -190,6 +190,31 @@ describe("src/LocaleHelper", function() {
 					.replace(":var2", dict.var2)
 					.replace(":var3", dict.var3),
 				localeHelper.trans(LocaleKeys.simple.threeVarsWithRaw, dict)
+			);
+		});
+
+		it("should conjugate a single variable", function() {
+			assert.equal("cats", localeHelper.trans(LocaleKeys.advanced.conjugateOne, dict));
+		});
+
+		it("should conjugate a single variable & interpolate a variable, with raw text", function() {
+			assert.equal(
+				`${String(dict.var2)} cats`,
+				localeHelper.trans(LocaleKeys.advanced.conjugateOneAndInterpolate, dict)
+			);
+		});
+
+		it("should conjugate two variables", function() {
+			assert.equal(
+				`cats and hours`,
+				localeHelper.trans(LocaleKeys.advanced.conjugateTwo, dict)
+			);
+		});
+
+		it("should conjugate two variables & interpolate two variables, with raw text", function() {
+			assert.equal(
+				`${String(dict.var2)} cats have been sleeping for ${String(dict.var4)} hours`,
+				localeHelper.trans(LocaleKeys.advanced.conjugateTwoAndInterpolate, dict)
 			);
 		});
 	});

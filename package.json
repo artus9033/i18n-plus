@@ -7,6 +7,7 @@
 		"test": "mocha --require esm",
 		"genDocs": "jsdoc -c ./.jsdoc.json"
 	},
+	"homepage": "https://artus9033.github.io/i18n-plus/",
 	"author": "artus9033",
 	"license": "MIT",
 	"devDependencies": {

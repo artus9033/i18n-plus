@@ -113,8 +113,8 @@ export class LocaleHelper {
 
 			let variable = interpolationParams[key];
 
-			template = this._injectString(
-				this._cutString(
+			template = LocaleHelper._injectString(
+				LocaleHelper._cutString(
 					template,
 					pluralChoiceRegExp.lastIndex - fullMatch.length,
 					pluralChoiceRegExp.lastIndex

@@ -5,6 +5,12 @@ export const LocaleKeys = {
 		twoVars: "simple.twoVars",
 		oneVarWithRaw: "simple.oneVarWithRaw",
 		threeVarsWithRaw: "simple.threeVarsWithRaw"
+	},
+	advanced: {
+		conjugateOne: "advanced.conjugateOne",
+		conjugateOneAndInterpolate: "advanced.conjugateOneAndInterpolate",
+		conjugateTwo: "advanced.conjugateTwo",
+		conjugateTwoAndInterpolate: "advanced.conjugateTwoAndInterpolate"
 	}
 };
 

@@ -42,7 +42,7 @@ export class LocaleHelper {
 			return ending >= 11 && ending <= 99;
 		};
 
-		// 'zero', 'one', 'few' & 'other' are obligatory to be specified; usually, all you will need is them
+		// 'zero', 'one' & 'other' are obligatory to be specified; usually, all you will need is them
 		// for Polish & Slovenian, you also want to specify 'two'
 		// for Polish & Czech, you also want to specify 'few'
 		// for Maltese, you also want to specify 'many'
@@ -88,7 +88,7 @@ export class LocaleHelper {
 								variableString.endsWith("3") ||
 								variableString.endsWith("4")))
 					) {
-						return dictRules.few;
+						return dictRules.few ? dictRules.few : dictRules.other;
 					}
 					// IV. the 'many' case
 					else if (

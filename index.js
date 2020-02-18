@@ -1,9 +1,3 @@
-require("@babel/register");
+require = require("esm")(module);
 
-const fromLocales = require("./src/Locales");
-
-module.exports = {
-	Locales: fromLocales.Locales,
-	getLocaleFullName: fromLocales.getLocaleFullName,
-	LocaleHelper: require("./src/LocaleHelper").LocaleHelper
-};
+module.exports = require("./index.es6.js");

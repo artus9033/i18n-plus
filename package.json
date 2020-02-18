@@ -11,8 +11,6 @@
 	"author": "artus9033",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.8.4",
-		"@babel/register": "^7.8.3",
 		"jsdoc": "^3.6.3",
 		"minami": "^1.2.3",
 		"mocha": "^7.0.1"

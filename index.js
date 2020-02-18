@@ -1,6 +1,9 @@
 require("@babel/register");
 
+const fromLocales = require("./src/Locales");
+
 module.exports = {
-	Locales: require("./src/Locales"),
-	LocaleHelper: require("./src/LocaleHelper")
+	Locales: fromLocales.Locales,
+	getLocaleFullName: fromLocales.getLocaleFullName,
+	LocaleHelper: require("./src/LocaleHelper").LocaleHelper
 };

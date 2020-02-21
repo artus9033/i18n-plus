@@ -1,6 +1,6 @@
 {
 	"name": "i18n-plus",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Node.js package providing i18n with variable interpolation & conjugation of words with respect to quantifiers, supporting all languages' conjugation rules.",
 	"main": "index.js",
 	"scripts": {

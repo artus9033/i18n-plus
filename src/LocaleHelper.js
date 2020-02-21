@@ -74,7 +74,7 @@ export class LocaleHelper {
 		Object.entries(interpolationParams).forEach(keyValuePair => {
 			template = template.replace(
 				new RegExp(":" + keyValuePair[0], "g"),
-				_.isString(keyValuePair[1]) ? keyValuePair[1] : String(keyValuePair[1].toString())
+				_.isString(keyValuePair[1]) ? keyValuePair[1] : String(keyValuePair[1]?.toString())
 			);
 		});
 

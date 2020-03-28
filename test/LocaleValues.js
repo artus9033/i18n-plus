@@ -1,5 +1,5 @@
 import LocaleKeys from "./LocaleKeys";
-import Locales from "../src/Locales";
+import { Locales } from "../dist";
 
 export const LocaleValues = {
 	[Locales.en]: {

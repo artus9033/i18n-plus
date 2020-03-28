@@ -1,8 +1,7 @@
 import assert from "assert";
 import _ from "lodash";
 
-import Locales, { getLocaleFullName } from "../src/Locales";
-import LocaleHelper from "../src/LocaleHelper";
+import { Locales, getLocaleFullName, LocaleHelper } from "../dist";
 import LocaleValues from "./LocaleValues";
 import LocaleKeys from "./LocaleKeys";
 
@@ -66,23 +65,6 @@ describe("src/LocaleHelper", function() {
 				part1 + part3,
 				LocaleHelper._cutString(text, part1.length, part1.length + part2.length)
 			);
-		});
-	});
-
-	describe("constructor", function() {
-		it("should initialize properly the locale from argument", function() {
-			assert.equal(new LocaleHelper(Locales.pl, LocaleValues).locale, Locales.pl);
-		});
-
-		it("should initialize properly the fallback locale from argument", function() {
-			assert.equal(
-				new LocaleHelper(Locales.en, LocaleValues, Locales.pl).fallbackLocale,
-				Locales.pl
-			);
-		});
-
-		it("should initialize properly the fallback locale if argument not specified", function() {
-			assert.equal(new LocaleHelper(Locales.pl, LocaleValues).fallbackLocale, Locales.en);
 		});
 	});
 

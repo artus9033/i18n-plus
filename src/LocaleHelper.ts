@@ -6,19 +6,22 @@ import Locales, { getLocaleFullName } from "./Locales";
  * Key class used for rendering translated, conjugated & interpolated strings; see trans
  */
 export class LocaleHelper {
+	private locale: string;
+	private fallbackLocale: string;
+	private localeValues: Object;
+
 	/**
 	 * @constructor
 	 * @param {string} localeKey locale codename taken from {@link Locales}, specifies as the default (current) language to use for loading translation templates
 	 * @param {Object} localeValues object with all translation keys values as names for properties, the values of which are templates to be formatted
 	 * @param {string} [fallbackLocale = Locales.en] locale codename taken from {@link Locales}, used as a fallback locale if a translation template is not found for the current locale set; use {@link LocaleHelper#setFallbackLocale} to change this at runtime
 	 */
-	constructor(localeKey, localeValues, fallbackLocale = Locales.en) {
+	constructor(localeKey: string, localeValues: Object, fallbackLocale: string = Locales.en) {
 		/**
 		 * Current locale used for choosing translations
 		 * @type {string}
 		 */
 		this.locale = localeKey;
-
 		/**
 		 * Dictionary with templates of translations as values of properties with keys as names, grouped as values of properties with locale codenames as names
 		 * @type {Object}
@@ -38,7 +41,7 @@ export class LocaleHelper {
 	 * @param {number} index the index at which to insert the other string
 	 * @param {string} newPart the other string to be inserted
 	 */
-	static _injectString(str, index, newPart) {
+	static _injectString(str: string, index: number, newPart: string) {
 		return str.slice(0, index) + newPart + str.slice(index);
 	}
 
@@ -48,7 +51,7 @@ export class LocaleHelper {
 	 * @param {number} startIndex the index from which to start deleting characters
 	 * @param {number} endIndex the index at which to stop deleting characters
 	 */
-	static _cutString(str, startIndex, endIndex) {
+	static _cutString(str: string, startIndex: number, endIndex: number) {
 		return str.slice(0, startIndex) + str.slice(endIndex);
 	}
 
@@ -59,7 +62,7 @@ export class LocaleHelper {
 	 * @param {Object} [interpolationParams = {}] dictionary with all variables used for interpolating translations
 	 * @returns {string} the interpolated string
 	 */
-	trans(key, interpolationParams = {}) {
+	trans(key: string, interpolationParams: { [key: string]: number | string } = {}): string {
 		let template = String(key);
 
 		let templateLookup = this.localeValues[this.locale][key];
@@ -82,7 +85,7 @@ export class LocaleHelper {
 			);
 		});
 
-		let malteseManyTest = (variable, variableString) => {
+		let malteseManyTest = (_variable: any, variableString: string) => {
 			let ending = Number(variableString.slice(-2));
 
 			return ending >= 11 && ending <= 99;
@@ -92,7 +95,12 @@ export class LocaleHelper {
 		// for Polish & Slovenian, you also want to specify 'two'
 		// for Polish & Czech, you also want to specify 'few'
 		// for Maltese, you also want to specify 'many'
-		let pluralChoice = (variable, variableString, dictRules) => {
+		let pluralChoice = (
+			variable: number | string,
+			dictRules: { zero: any; one: any; other: any; two: any; few: any; many: any }
+		) => {
+			let variableString = String(variable);
+
 			// inspired by: https://developer.android.com/guide/topics/resources/string-resource.html#Plurals
 			switch (variable) {
 				case 0:
@@ -103,9 +111,9 @@ export class LocaleHelper {
 
 				default:
 					// I. the 'one' case
-					if (variableString.endsWith(1)) {
+					if (variableString.endsWith("1")) {
 						if (this.locale == Locales.ru) {
-							if (variable.endsWith(11)) {
+							if (variableString.endsWith("11")) {
 								return dictRules.other;
 							}
 						}
@@ -129,7 +137,7 @@ export class LocaleHelper {
 							variable != 13 &&
 							variable != 14) ||
 						// b) Czech: ending with 2, 3 or 4
-						(this.locale == Locales.cz &&
+						(this.locale == Locales.cs &&
 							(variableString.endsWith("2") ||
 								variableString.endsWith("3") ||
 								variableString.endsWith("4")))
@@ -166,7 +174,7 @@ export class LocaleHelper {
 					pluralChoiceRegExp.lastIndex
 				),
 				pluralChoiceRegExp.lastIndex - fullMatch.length,
-				pluralChoice(variable, String(variable), dictRules)
+				pluralChoice(variable, dictRules)
 			);
 
 			pluralChoiceRegExp.lastIndex -= fullMatch.length;
@@ -179,7 +187,7 @@ export class LocaleHelper {
 	 * Returns the full name of the current locale (@see LocaleHelper#locale )
 	 * @returns {string} full name of the current locale
 	 */
-	getLanguageName() {
+	getLanguageName(): string {
 		return getLocaleFullName(this.locale);
 	}
 
@@ -188,7 +196,7 @@ export class LocaleHelper {
 	 * @param {string} locale new locale codename, taken from {@link Locales}
 	 * @returns {LocaleHelper} this instance of {@link LocaleHelper}, useful for chaining
 	 */
-	setLocale(locale) {
+	setLocale(locale: string): LocaleHelper {
 		this.locale = locale;
 
 		return this;
@@ -199,7 +207,7 @@ export class LocaleHelper {
 	 * @param {string} locale new fallback locale codename, taken from {@link Locales}
 	 * @returns {LocaleHelper} this instance of {@link LocaleHelper}, useful for chaining
 	 */
-	setFallbackLocale(locale) {
+	setFallbackLocale(locale: string): LocaleHelper {
 		this.fallbackLocale = locale;
 
 		return this;
@@ -211,7 +219,7 @@ export class LocaleHelper {
 	 * @see LocaleHelper#locale
 	 * @returns {string} current locale codename
 	 */
-	getLocale() {
+	getLocale(): string {
 		return this.locale;
 	}
 
@@ -221,7 +229,7 @@ export class LocaleHelper {
 	 * @see LocaleHelper#fallbackLocale
 	 * @returns {string} current fallback locale codename
 	 */
-	getFallbackLocale() {
+	getFallbackLocale(): string {
 		return this.fallbackLocale;
 	}
 }

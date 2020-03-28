@@ -12,6 +12,7 @@ A node.js package providing i18n with variable interpolation & conjugation of wo
 -   Translating strings using user-defined dictionaries (key-value system)
 -   Interpolation of strings with variables
 -   User-defined conjugation (e.g. for pluralization, grammatical case conjugation, etc.) with respect to the quantity, passed in as a variable
+-   Strongly typed with TypeScript
 
 ## Documentation
 
@@ -27,8 +28,7 @@ There are two specifiers available for you to use:
 2. Conjugation syntax `:[quantityVarName, { zero: 'values', one: 'value', other: 'values' } ]` -
 
 ```javascript
-import Locales from "i18n-plus/Locales";
-import LocaleHelper from "i18n-plus/LocaleHelper";
+import { Locales, LocaleHelper } from "i18n-plus";
 
 // these will be the keys used in the dictionary to identify texts
 const localeKeys = {

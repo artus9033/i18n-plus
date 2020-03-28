@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="LocaleHelper.html">LocaleHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#._cutString">_cutString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#._injectString">_injectString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getFallbackLocale">getFallbackLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getLanguageName">getLanguageName</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getLocale">getLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#setFallbackLocale">setFallbackLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#setLocale">setLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#trans">trans</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#getLocaleFullName">getLocaleFullName</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#Locales">Locales</a></span></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>i18n-plus</h1>
+<p><a href="https://github.com/artus9033/i18n-plus/issues"><img src="https://img.shields.io/github/issues/artus9033/i18n-plus?style=flat-square" alt="GitHub issues"></a>
+<a href="https://github.com/artus9033/i18n-plus/network"><img src="https://img.shields.io/github/forks/artus9033/i18n-plus?style=flat-square" alt="GitHub forks"></a>
+<a href="https://github.com/artus9033/i18n-plus/stargazers"><img src="https://img.shields.io/github/stars/artus9033/i18n-plus?style=flat-square" alt="GitHub stars"></a>
+<a href="https://github.com/artus9033/i18n-plus/blob/master/LICENSE"><img src="https://img.shields.io/github/license/artus9033/i18n-plus?style=flat-square" alt="GitHub license"></a></p>
+<p>A node.js package providing i18n with variable interpolation &amp; conjugation of words with respect to quantifiers, supporting all languages' conjugation rules.</p>
+<h2>Features</h2>
+<ul>
+<li>Translating strings using user-defined dictionaries (key-value system)</li>
+<li>Interpolation of strings with variables</li>
+<li>User-defined conjugation (e.g. for pluralization, grammatical case conjugation, etc.) with respect to the quantity, passed in as a variable</li>
+<li>Strongly typed with TypeScript</li>
+</ul>
+<h2>Documentation</h2>
+<p>You can read the full documentation with examples <a href="https://artus9033.github.io/i18n-plus/">there</a>.</p>
+<h2>Simple usage in a brief</h2>
+<p>The key function is <code>trans(key, interpolationParams = {})</code></p>
+<p>There are two specifiers available for you to use:</p>
+<ol>
+<li>Interpolation syntax <code>:variableName</code> - simply replaces all such fields with the corresponding values supplied as Object properties in the second argument of <code>trans</code> call</li>
+<li>Conjugation syntax <code>:[quantityVarName, { zero: 'values', one: 'value', other: 'values' } ]</code> -</li>
+</ol>
+<pre class="prettyprint source lang-javascript"><code>import { Locales, LocaleHelper } from &quot;i18n-plus&quot;;
+
+// these will be the keys used in the dictionary to identify texts
+const localeKeys = {
+	home: { welcome: &quot;home.welcome&quot; }
+};
+
+// this is the actual dictionary
+const localeValues = {
+	[Locales.en]: {
+		[localeKeys.home.welcome]:
+			&quot;Welcome, :user! You have :[messages, { zero: 'messages', one: 'message', other: 'messages' }]&quot;
+	}
+};
+
+let localeHelper = new LocaleHelper(localeKeys, localeValues);
+
+// here, you can do whatever you want with the translated & interpolated text, e.g. send it with an HTTP response, render it as a React or HTML component, log it to the console, etc.
+
+let welcomeMessage = localeHelper.trans(localeKeys.home.welcome, {
+	user: &quot;Elon Musk&quot;,
+	messages: 5
+});
+</code></pre>
+<h2>Running tests</h2>
+<p>You can run all tests using <code>npm run test</code></p>
+<h2>Compiling documentation</h2>
+<p>This project uses <code>jsdoc</code> to compile documentation to HTML files to <code>docs</code> directory. You can run the process with <code>npm run genDocs</code>.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Mar 28 2020 18:47:14 GMT+0100 (GMT+01:00) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

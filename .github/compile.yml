@@ -2,7 +2,8 @@ name: Test TypeScript source compilation
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   build:

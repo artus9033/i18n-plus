@@ -11,5 +11,6 @@
 		"inlineSourceMap": true,
 		"inlineSources": true,
 		"esModuleInterop": true
-	}
+	},
+	"include": ["./src/**/*"]
 }

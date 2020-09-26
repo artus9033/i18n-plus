@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>
-			I18n-plus documentation
-		</title>
+		<title>I18n-plus documentation</title>
 
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 	</head>
-	<body>
+	<body style="height: 100vh; overflow: hidden">
 		<script>
 			const VERSIONS = ["1.0.0", "1.0.1", "2.0.0"];
 
@@ -19,7 +17,7 @@
 				$("#docframe").attr("src", url);
 			}
 
-			$(document).ready(function() {
+			$(document).ready(function () {
 				docframeSetSrc(getUrl(VERSIONS[VERSIONS.length - 1]));
 
 				VERSIONS.forEach((ver, index) => {
@@ -30,17 +28,25 @@
 					);
 				});
 
-				$("#version").change(function() {
+				$("#version").change(function () {
 					docframeSetSrc(getUrl($(this).val()));
 				});
 			});
 		</script>
 		<div
-			style="position: absolute; bottom: 0; left: 0; width: 244px; flex-direction: row; border-top: 1px solid lightgray; padding: 6px;"
+			style="
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 244px;
+				flex-direction: row;
+				border-top: 1px solid lightgray;
+				padding: 6px;
+			"
 		>
-			<span style="color: #37474F;">Documentation for</span>
-			<select id="version"> </select>
+			<span style="color: #37474f">Documentation for</span>
+			<select id="version"></select>
 		</div>
-		<iframe style="border: 0; width: 100%; height: 100%;" id="docframe" />
+		<iframe style="border: 0; width: 100%; height: 100%" id="docframe" />
 	</body>
 </html>

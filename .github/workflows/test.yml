@@ -26,8 +26,8 @@ jobs:
             - name: Install NPM dependencies
               run: npm install
 
-            - name: Run tests with ts-jest
-              run: npm test
+            - name: Transpile project sources
+              run: npm run build
 
     run-tests:
         name: Run unit tests

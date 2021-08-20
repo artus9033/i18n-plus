@@ -9,7 +9,7 @@
 		"dev": "tsc --watch --project tsconfig.build.json",
 		"test": "jest",
 		"genDocs": "jsdoc -c ./.jsdoc.json",
-		"prepublish": "npm run build && npm run changelog",
+		"prepublishOnly": "npm run build && npm run changelog",
 		"changelog": "auto-changelog --template keepachangelog"
 	},
 	"devDependencies": {

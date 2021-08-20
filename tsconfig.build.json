@@ -1,0 +1,8 @@
+{
+	// the compilation (build) tsconfig.json used by npm scripts
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"rootDir": "./src"
+	},
+	"exclude": ["dist", "docs", "test"]
+}

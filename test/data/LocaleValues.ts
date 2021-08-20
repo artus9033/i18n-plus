@@ -1,5 +1,5 @@
+import { Locales } from "../../dist";
 import LocaleKeys from "./LocaleKeys";
-import { Locales } from "../dist";
 
 export const LocaleValues = {
 	[Locales.en]: {
@@ -16,7 +16,7 @@ export const LocaleValues = {
 		[LocaleKeys.advanced.conjugateTwo]:
 			":[var2, { zero: 'cats', one: 'cat', other: 'cats' }] and :[var4, { zero: 'hours', one: 'hour', other: 'hours' }]",
 		[LocaleKeys.advanced.conjugateTwoAndInterpolate]:
-			":var2 :[var2, { zero: 'cats', one: 'cat', other: 'cats' }] have been sleeping for :var4 :[var4, { zero: 'hours', one: 'hour', other: 'hours' }]"
+			":var2 :[var2, { zero: 'cats', one: 'cat', other: 'cats' }] have been sleeping for :var4 :[var4, { zero: 'hours', one: 'hour', other: 'hours' }]",
 	},
 	[Locales.pl]: {
 		// LocaleKeys.simple
@@ -34,8 +34,8 @@ export const LocaleValues = {
 		[LocaleKeys.advanced.conjugateTwo]:
 			":[var2, { zero: 'kotów', one: 'kot', few: 'koty', other: 'kotów' }] i :[var4, { zero: 'godzin', one: 'godzina', few: 'godziny', other: 'godzin' }]",
 		[LocaleKeys.advanced.conjugateTwoAndInterpolate]:
-			":var2 :[var2, { zero: 'kotów', one: 'kot', few: 'koty', other: 'kotów' }] spały przez :var4 :[var4, { zero: 'godzin', one: 'godzina', few: 'godziny', other: 'godzin' }]"
-	}
+			":var2 :[var2, { zero: 'kotów', one: 'kot', few: 'koty', other: 'kotów' }] spały przez :var4 :[var4, { zero: 'godzin', one: 'godzina', few: 'godziny', other: 'godzin' }]",
+	},
 };
 
 export default LocaleValues;

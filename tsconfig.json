@@ -1,14 +1,7 @@
 {
+	// the development tsconfig.json used by IDE code assist
+	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"lib": ["esnext", "dom"],
-		"target": "es5",
-		"module": "commonjs",
-		"outDir": "./dist",
-		"esModuleInterop": true,
-		"declaration": true,
-		"baseUrl": "./src",
-		"rootDir": "./src",
-		"moduleResolution": "node",
-		"types": []
+		"rootDir": "./"
 	}
 }

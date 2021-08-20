@@ -1,0 +1,15 @@
+{
+	// the base tsconfig.json to be extended by build- & dev-configs
+	"compilerOptions": {
+		"lib": ["es2016", "dom"],
+		"target": "ES5",
+		"module": "commonjs",
+		"outDir": "./dist",
+		"esModuleInterop": true,
+		"rootDir": "./src",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"declaration": true
+	},
+	"exclude": ["dist", "docs"]
+}

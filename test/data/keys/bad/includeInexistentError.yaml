@@ -1,0 +1,1 @@
+simple: !include(./404.yaml)

@@ -4,6 +4,9 @@
 	"description": "Node.js package providing i18n with variable interpolation & conjugation of words with respect to quantifiers, supporting all languages' conjugation rules.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"bin": {
+		"i18n-plus": "./scripts/cli.js"
+	},
 	"scripts": {
 		"build": "tsc --project tsconfig.build.json",
 		"dev": "tsc --watch --project tsconfig.build.json",
@@ -18,15 +21,20 @@
 		"@types/node": "^16.7.0",
 		"better-docs": "^2.3.2",
 		"esm": "^3.2.25",
+		"jest": "^27.0.6",
 		"jsdoc": "^3.6.7",
 		"minami": "^1.2.3",
-		"jest": "^27.0.6",
 		"ts-jest": "^27.0.5",
 		"ts-node": "^10.2.1",
 		"typescript": "^4.3.5"
 	},
 	"peerDependencies": {
-		"lodash": "^4.17.21"
+		"chokidar": "^3.5.2",
+		"json5": "^2.2.0",
+		"lodash": "^4.17.21",
+		"signale": "^1.4.0",
+		"yaml": "^1.10.2",
+		"yargs": "^17.1.1"
 	},
 	"homepage": "https://artus9033.github.io/i18n-plus/",
 	"author": "artus9033",

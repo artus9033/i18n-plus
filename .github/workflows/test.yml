@@ -3,8 +3,8 @@ name: Run unit tests
 on: push
 
 jobs:
-    prepare:
-        name: Setup & run tests
+    transpilation-test:
+        name: Transpilation test-run
         runs-on: ubuntu-latest
         env:
             NODE_VERSION: 14.15.5
@@ -26,20 +26,31 @@ jobs:
             - name: Install NPM dependencies
               run: npm install
 
-    transpilation-test:
-        name: Setup & run tests
-        needs: prepare
-        runs-on: ubuntu-latest
-
-        steps:
             - name: Run tests with ts-jest
               run: npm test
 
     run-tests:
-        name: Setup & run tests
-        needs: transpilation-test
+        name: Run unit tests
         runs-on: ubuntu-latest
+        env:
+            NODE_VERSION: 14.15.5
 
         steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                submodules: "recursive"
+
+            - name: Setup Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v2
+              with:
+                node-version: ${{ env.NODE_VERSION }}
+
+            - name: Update NPM
+              run: npm install -g npm
+
+            - name: Install NPM dependencies
+              run: npm install
+
             - name: Run tests with ts-jest
               run: npm test

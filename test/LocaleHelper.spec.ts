@@ -1,4 +1,4 @@
-import { LocaleHelper, Locales, getLocaleFullName } from "../dist";
+import { LocaleHelper, Locales } from "../src";
 import LocaleKeys from "./data/LocaleKeys";
 import LocaleValues from "./data/LocaleValues";
 

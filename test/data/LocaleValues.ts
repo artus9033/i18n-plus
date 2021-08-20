@@ -1,4 +1,4 @@
-import { Locales } from "../../dist";
+import { Locales } from "../../src";
 import LocaleKeys from "./LocaleKeys";
 
 export const LocaleValues = {

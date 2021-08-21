@@ -139,8 +139,8 @@ _home.yaml_
 ```yaml
 - welcome
 - mainPanel:
-	- text1
-	- text2
+      - text1
+      - text2
 ```
 
 _login.yaml_
@@ -148,8 +148,8 @@ _login.yaml_
 ```yaml
 - heading
 - buttons:
-	- signIn
-	- register
+      - signIn
+      - register
 ```
 
 ---

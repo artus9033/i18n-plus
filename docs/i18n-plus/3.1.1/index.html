@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="LocaleHelper.html">LocaleHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#._cutString">_cutString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#._injectString">_injectString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getFallbackLocale">getFallbackLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getLanguageName">getLanguageName</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#getLocale">getLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#setFallbackLocale">setFallbackLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#setLocale">setLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="LocaleHelper.html#trans">trans</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#getLocaleFullName">getLocaleFullName</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#Locales">Locales</a></span></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>i18n-plus</h1>
+<p><a href="https://github.com/artus9033/i18n-plus/issues"><img src="https://img.shields.io/github/issues/artus9033/i18n-plus?style=flat-square" alt="GitHub issues"></a>
+<a href="https://github.com/artus9033/i18n-plus/network"><img src="https://img.shields.io/github/forks/artus9033/i18n-plus?style=flat-square" alt="GitHub forks"></a>
+<a href="https://github.com/artus9033/i18n-plus/stargazers"><img src="https://img.shields.io/github/stars/artus9033/i18n-plus?style=flat-square" alt="GitHub stars"></a>
+<a href="https://github.com/artus9033/i18n-plus/blob/master/LICENSE"><img src="https://img.shields.io/github/license/artus9033/i18n-plus?style=flat-square" alt="GitHub license"></a></p>
+<p>A node.js package providing i18n with variable interpolation &amp; conjugation of words with respect to quantifiers, supporting all languages' conjugation rules.</p>
+<h2>Features</h2>
+<ul>
+<li>Translating strings using user-defined dictionaries (key-value system)</li>
+<li>Interpolation of strings with variables</li>
+<li>User-defined conjugation (e.g. for pluralization, grammatical case conjugation, etc.) with respect to the quantity, passed in as a variable</li>
+<li>Strongly typed with TypeScript</li>
+<li>Transpilation of YAML-defined translation key dictionaries into statically-typed, importable TypeScript code</li>
+<li>Supports splitting key dictionaries into multiple files with <code>!include()</code> directives</li>
+</ul>
+<hr>
+<h2>Documentation</h2>
+<p>You can read the full documentation with examples <a href="https://artus9033.github.io/i18n-plus/">there</a>.</p>
+<hr>
+<h2>Usage</h2>
+<h3>Basic usage in a brief</h3>
+<p>The key function provided is <code>trans(key, interpolationParams = {})</code></p>
+<p>There are two specifiers available for use:</p>
+<ol>
+<li>Interpolation syntax <code>:variableName</code> - simply replaces all such fields with the corresponding values supplied as Object properties in the second argument of <code>trans</code> call</li>
+<li>Conjugation syntax <code>:[quantityVarName, { zero: 'values', one: 'value', other: 'values' } ]</code> -</li>
+</ol>
+<pre class="prettyprint source lang-javascript"><code>import { Locales, LocaleHelper } from &quot;i18n-plus&quot;;
+
+// these will be the keys used in the dictionary to identify texts
+const localeKeys = {
+	home: { welcome: &quot;home.welcome&quot; },
+};
+
+// this is the actual dictionary
+const localeValues = {
+	[Locales.en]: {
+		[localeKeys.home.welcome]:
+			&quot;Welcome, :user! You have :[messages, { zero: 'messages', one: 'message', other: 'messages' }]&quot;,
+	},
+};
+
+let localeHelper = new LocaleHelper(localeKeys, localeValues);
+
+// here, you can do whatever you want with the translated & interpolated text, e.g. send it with an HTTP response, render it as a React or HTML component, log it to the console, etc.
+
+let welcomeMessage = localeHelper.trans(localeKeys.home.welcome, {
+	user: &quot;Elon Musk&quot;,
+	messages: 5,
+});
+</code></pre>
+<h3>Advanced usage - defining</h3>
+<p>What makes this library special is the integrated CLI that enables developers to define their translation keys in a ligthweight, clean manner, by placing them in YAML with support for additional directives.</p>
+<p>Considering the above example:</p>
+<pre class="prettyprint source lang-javascript"><code>const localeKeys = {
+	home: { welcome: &quot;home.welcome&quot; },
+};
+</code></pre>
+<p>can be re-written as:</p>
+<pre class="prettyprint source lang-yaml"><code>home:
+    - welcome
+</code></pre>
+<p>which is transpiled by the CLI to just the TS code above which can be imported right into the actual project code. To do so, the project supports two scenarios:</p>
+<ul>
+<li>single-time compilation, e.g. in a buildscript: <code>i18n-plus compileKeys keys/entrypoint.yaml i18n/LocaleKeys.ts</code>, which would compile <code>keys/entrypoint.yaml</code> into TS and output the bundle to <code>i18n/LocaleKeys.ts</code></li>
+<li>development compilation with watching, e.g. in a development script, which does the same as the above scenario, but also watches for changes in all files referenced by the entrypoint and the entrypoint itself, recompiling &amp; rebuilding file dependency tree on file changes. The command is the same, all that is needed is just appending the <code>--dev</code> (or short <code>-d</code>) switch: <code>i18n-plus compileKeys keys/entrypoint.yaml i18n/LocaleKeys.ts --dev</code></li>
+</ul>
+<p>You can easily access the documentation of the tool by running <code>i18n-plus -?</code>, <code>i18n-plus -h</code>, or just failing to provide a valid command syntax, which will trigger help automatically and describe the problem on the bottom, e.g. running <code>i18n-plus compileKeys keys/entrypoint.yaml</code> (please note the missing output path) will print the following:</p>
+<pre class="prettyprint source lang-bash"><code>compileI18n compileKeys &lt;input> &lt;output>
+
+compile I18n yaml files to importable TS bundle
+
+Positionals:
+  input   root YAML input file path                          [string] [required]
+  output  output TS bundle file path                         [string] [required]
+
+Options:
+      --version   Show version number                                  [boolean]
+  -d, --dev                                           [boolean] [default: false]
+  -?, -h, --help  Show help                                            [boolean]
+
+Not enough non-option arguments: got 1, need at least 2
+</code></pre>
+<p>Moreover, for the sake of larger projects, keys can be split into multiple files. Consider the example:</p>
+<pre class="prettyprint source lang-javascript"><code>const localeKeys = {
+	home: {
+		welcome: &quot;home.welcome&quot;,
+		mainPanel: {
+			text1: &quot;home.mainPanel.text1&quot;,
+			text2: &quot;home.mainPanel.text2&quot;,
+		},
+	},
+	login: {
+		heading: &quot;login.heading&quot;,
+		buttons: {
+			signIn: &quot;login.buttons.signIn&quot;,
+			register: &quot;login.buttons.register&quot;,
+		},
+	},
+};
+</code></pre>
+<p>To simplify the definition and maintain readability, the structure can be split into three files:</p>
+<p><em>entrypoint.yaml</em></p>
+<pre class="prettyprint source lang-yaml"><code>home: !include(./home.yaml)
+login: !include(./login.yaml)
+</code></pre>
+<p><em>home.yaml</em></p>
+<pre class="prettyprint source lang-yaml"><code>- welcome
+- mainPanel:
+      - text1
+      - text2
+</code></pre>
+<p><em>login.yaml</em></p>
+<pre class="prettyprint source lang-yaml"><code>- heading
+- buttons:
+      - signIn
+      - register
+</code></pre>
+<hr>
+<h2>Compatibility</h2>
+<p>TS files generated by the CLI with <code>compileKeys</code> are compatible with <a href="https://react.i18next.com/">react-i18next</a>.</p>
+<hr>
+<h2>Unit tests</h2>
+<p>This project uses <code>jest</code> accompanied by <code>ts-jest</code> for unit testing. You can run all tests using <code>npm test</code>.</p>
+<h2>Documentation</h2>
+<p>This project uses <code>jsdoc</code> to compile documentation to HTML files to <code>docs</code> directory. You can run the process with <code>npm run genDocs</code>. The docs will be written to <code>docs/i18n-plus/X.X.X</code>, and the only manual requirement is to put a proper entry to line $10$ in <code>docs/index.html</code>: <code>const VERSIONS = [..., &quot;X.X.X&quot;];</code>.</p>
+<h2>Changelog</h2>
+<p>The changelog is available on <a href="https://github.com/artus9033/i18n-plus/blob/master/CHANGELOG.md">github</a> and is auto-generated by <code>auto-changelog</code>, available as a script: <code>npm run changelog</code>.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Tue Aug 24 2021 23:36:08 GMT+0200 (czas środkowoeuropejski letni) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

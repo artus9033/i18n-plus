@@ -69,11 +69,11 @@ export class LocaleHelper {
 	trans(key: string, interpolationParams: { [key: string]: number | string } = {}): string {
 		let template = String(key);
 
-		let templateLookup = this.localeValues[this.locale][key];
+		let templateLookup = _.get(this.localeValues[this.locale], key);
 		if (templateLookup) {
 			template = templateLookup;
 		} else {
-			templateLookup = this.localeValues[this.fallbackLocale][key];
+			templateLookup = _.get(this.localeValues[this.fallbackLocale], key);
 
 			if (templateLookup) template = templateLookup;
 		}

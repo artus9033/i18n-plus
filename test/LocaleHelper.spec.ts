@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { LocaleHelper, Locales } from "../src";
 import LocaleKeys from "./data/LocaleKeys";
 import LocaleValues from "./data/LocaleValues";
@@ -117,19 +119,19 @@ describe("src/LocaleHelper", function () {
 
 		test("should not alter a non-formatted, raw text", function () {
 			expect(localeHelper.trans(LocaleKeys.simple.raw, dict)).toStrictEqual(
-				LocaleValues[Locales.en][LocaleKeys.simple.raw]
+				_.get(LocaleValues[Locales.en], LocaleKeys.simple.raw)
 			);
 		});
 
 		test("should format a single variable without raw text", function () {
 			expect(localeHelper.trans(LocaleKeys.simple.raw, dict)).toStrictEqual(
-				LocaleValues[Locales.en][LocaleKeys.simple.raw].replace(":var1", dict.var1)
+				_.get(LocaleValues[Locales.en], LocaleKeys.simple.raw).replace(":var1", dict.var1)
 			);
 		});
 
 		test("should format two variables without raw text", function () {
 			expect(localeHelper.trans(LocaleKeys.simple.twoVars, dict)).toStrictEqual(
-				LocaleValues[Locales.en][LocaleKeys.simple.twoVars]
+				_.get(LocaleValues[Locales.en], LocaleKeys.simple.twoVars)
 					.replace(":var1", dict.var1)
 					.replace(":var2", String(dict.var2))
 			);
@@ -137,7 +139,7 @@ describe("src/LocaleHelper", function () {
 
 		test("should format a single variable with raw text", function () {
 			expect(localeHelper.trans(LocaleKeys.simple.oneVarWithRaw, dict)).toStrictEqual(
-				LocaleValues[Locales.en][LocaleKeys.simple.oneVarWithRaw].replace(
+				_.get(LocaleValues[Locales.en], LocaleKeys.simple.oneVarWithRaw).replace(
 					":var1",
 					dict.var1
 				)
@@ -146,7 +148,7 @@ describe("src/LocaleHelper", function () {
 
 		test("should format three variables with raw text", function () {
 			expect(localeHelper.trans(LocaleKeys.simple.threeVarsWithRaw, dict)).toStrictEqual(
-				LocaleValues[Locales.en][LocaleKeys.simple.threeVarsWithRaw]
+				_.get(LocaleValues[Locales.en], LocaleKeys.simple.threeVarsWithRaw)
 					.replace(":var1", dict.var1)
 					.replace(":var2", String(dict.var2))
 					.replace(":var3", dict.var3)

@@ -36,22 +36,24 @@ There are two specifiers available for use:
 2. Conjugation syntax `:[quantityVarName, { zero: 'values', one: 'value', other: 'values' } ]` -
 
 ```javascript
-import { Locales, LocaleHelper } from "i18n-plus";
+import { Locales, LocaleHelper, Translation } from "i18n-plus";
 
 // these will be the keys used in the dictionary to identify texts
 const localeKeys = {
 	home: { welcome: "home.welcome" },
 };
 
-// this is the actual dictionary
-const localeValues = {
-	[Locales.en]: {
-		[localeKeys.home.welcome]:
+// this is the actual translation for a single language
+const translationEN: Translation<typeof LocaleKeys> = {
+	home: {
+		welcome:
 			"Welcome, :user! You have :[messages, { zero: 'messages', one: 'message', other: 'messages' }]",
 	},
 };
 
-let localeHelper = new LocaleHelper(localeKeys, localeValues);
+let localeHelper = new LocaleHelper(localeKeys, {
+	[Locales.en]: translationEN,
+});
 
 // here, you can do whatever you want with the translated & interpolated text, e.g. send it with an HTTP response, render it as a React or HTML component, log it to the console, etc.
 

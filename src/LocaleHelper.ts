@@ -1,3 +1,4 @@
+import autoBind from "auto-bind";
 import _ from "lodash";
 
 import Locales, { getLocaleFullName } from "./Locales";
@@ -33,6 +34,9 @@ export class LocaleHelper {
 		 * @type {string}
 		 */
 		this.fallbackLocale = fallbackLocale;
+
+		// bind all properties to fix context problems e.g. in React
+		autoBind(this);
 	}
 
 	/**
@@ -74,7 +78,7 @@ export class LocaleHelper {
 			if (templateLookup) template = templateLookup;
 		}
 
-		Object.entries(interpolationParams).forEach(keyValuePair => {
+		Object.entries(interpolationParams).forEach((keyValuePair) => {
 			template = template.replace(
 				new RegExp(":" + keyValuePair[0], "g"),
 				_.isString(keyValuePair[1])

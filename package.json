@@ -13,13 +13,14 @@
 		"test": "jest",
 		"genDocs": "jsdoc -c ./.jsdoc.json",
 		"prepublishOnly": "npm run build && npm test && npm run changelog",
-		"changelog": "auto-changelog --template keepachangelog"
+		"changelog": "npx auto-changelog --template keepachangelog"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.0.1",
 		"@types/lodash": "^4.14.172",
 		"@types/node": "^16.7.0",
 		"auto-bind": "^4.0.0",
+		"auto-changelog": "^2.3.0",
 		"better-docs": "^2.3.2",
 		"esm": "^3.2.25",
 		"jest": "^27.0.6",

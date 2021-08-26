@@ -87,9 +87,7 @@ export class LocaleHelper extends EventEmitter {
 				new RegExp(":" + keyValuePair[0], "g"),
 				_.isString(keyValuePair[1])
 					? keyValuePair[1]
-					: String(
-							keyValuePair[1].toString ? keyValuePair[1].toString() : keyValuePair[1]
-					  )
+					: String(keyValuePair[1]?.toString?.() ?? keyValuePair[1])
 			);
 		});
 

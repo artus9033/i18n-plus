@@ -1,3 +1,5 @@
+import { EventEmitter } from "events";
+
 import autoBind from "auto-bind";
 import _ from "lodash";
 
@@ -6,7 +8,7 @@ import Locales, { getLocaleFullName } from "./Locales";
 /**
  * Key class used for rendering translated, conjugated & interpolated strings; see trans
  */
-export class LocaleHelper {
+export class LocaleHelper extends EventEmitter {
 	private locale: string;
 	private fallbackLocale: string;
 	private localeValues: Object;
@@ -18,6 +20,8 @@ export class LocaleHelper {
 	 * @param {string} [fallbackLocale = Locales.en] locale codename taken from {@link Locales}, used as a fallback locale if a translation template is not found for the current locale set; use {@link LocaleHelper#setFallbackLocale} to change this at runtime
 	 */
 	constructor(localeKey: string, localeValues: Object, fallbackLocale: string = Locales.en) {
+		super();
+
 		/**
 		 * Current locale used for choosing translations
 		 * @type {string}
@@ -201,7 +205,13 @@ export class LocaleHelper {
 	 * @returns {LocaleHelper} this instance of {@link LocaleHelper}, useful for chaining
 	 */
 	setLocale(locale: string): LocaleHelper {
+		let localeChanged = locale !== this.locale;
+
 		this.locale = locale;
+
+		if (localeChanged) {
+			this.emit("changed");
+		}
 
 		return this;
 	}
@@ -212,7 +222,13 @@ export class LocaleHelper {
 	 * @returns {LocaleHelper} this instance of {@link LocaleHelper}, useful for chaining
 	 */
 	setFallbackLocale(locale: string): LocaleHelper {
+		let fallbackLocaleChanged = locale !== this.fallbackLocale;
+
 		this.fallbackLocale = locale;
+
+		if (fallbackLocaleChanged) {
+			this.emit("changed");
+		}
 
 		return this;
 	}
